@@ -1,8 +1,12 @@
 {
-  "name": "webpackquick",
+  "name": "Frontend Kit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Basic setup for frontend development with Webpack and React",
+  "main": "app.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/tommasobertagnin/frontend-kit"
+  },
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server",
     "build": "npm run test && npm run clean && NODE_ENV=production webpack -p",
@@ -10,7 +14,7 @@
     "clean": "rm -rf ./dist/*"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tommaso Bertagnin",
   "license": "ISC",
   "devDependencies": {
     "babel": "^6.23.0",
