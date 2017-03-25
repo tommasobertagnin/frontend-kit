@@ -1,5 +1,5 @@
 {
-  "name": "Frontend Kit",
+  "name": "frontend-kit",
   "version": "1.0.0",
   "description": "Basic setup for frontend development with Webpack and React",
   "main": "app.js",
