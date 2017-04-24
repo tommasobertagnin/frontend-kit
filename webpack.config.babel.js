@@ -1,44 +1,42 @@
 /**
- * UI KIT
+ * FRONTEND KIT
  * 
  * webpack.config.js
  * configuration file for UI Kit
  */
 
-const webpack = require('webpack');
+import webpack from 'webpack'
+import path from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
-const path = require('path');
-const pathResolve = (loc) => path.resolve(__dirname, loc);
+const TARGET = process.env.NODE_ENV
+const pathResolve = (loc) => path.resolve(__dirname, loc)
 
 /**
  * PLUGINS
  */
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const htmlPlugin = new HtmlWebpackPlugin({
   title: 'UI Kit', // change this to modify the page title
   template: 'src/index.ejs',
-});
+})
 
 const scssExtractPlugin = new ExtractTextPlugin({
   filename: 'style.bundle.[hash].css',
   allChunks: true,
-  disable: process.env.NODE_ENV !== 'production',
-});
+  disable: TARGET !== 'production',
+})
 
 /**
  * CONFIGURATION
  */
-
 const webpackConfig = {
-  entry: pathResolve('src/app.js'),
+  entry: pathResolve('src/index.js'),
   output: {
     path: pathResolve('dist'),
     filename: 'app.bundle.[hash].js',
   },
-
   module: {
     rules: [
       {
@@ -59,19 +57,28 @@ const webpackConfig = {
       },
     ],
   },
-
   plugins: [
     htmlPlugin,
     scssExtractPlugin,
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
   ],
+}
 
-  devServer: {
+if (TARGET === 'development') {
+  // configure webpack-dev-server
+  webpackConfig.devServer = {
     hot: true,
     open: true,
     stats: 'errors-only',
-  },
-};
+    historyApiFallback: true
+  }
+  // enable HMR
+  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  webpackConfig.plugins.push(new webpack.NamedModulesPlugin())
+}
 
-module.exports = webpackConfig;
+if (TARGET === 'production') {
+  // show bundle size composition
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+}
+
+export default webpackConfig
