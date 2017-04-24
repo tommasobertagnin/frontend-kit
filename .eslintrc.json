@@ -28,9 +28,15 @@
             "error",
             "single"
         ],
-        "semi": [
+        "eol-last": [
             "error",
             "always"
+        ],
+        "no-var": 1,
+        "no-unused-vars": 0,
+        "semi": [
+            "error",
+            "never"
         ]
     },
     "globals": {
