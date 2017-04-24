@@ -4,19 +4,21 @@
   "description": "Basic setup for frontend development with React and Redux",
   "main": "app.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/tommasobertagnin/frontend-kit"
+    "type": "git",
+    "url": "https://github.com/tommasobertagnin/frontend-kit"
   },
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server",
-    "build": "npm run test && npm run clean && NODE_ENV=production webpack -p",
-    "test": "jest",
-    "clean": "rm -rf ./dist/*"
+    "build": "jest && rm -rf ./dist/* && NODE_ENV=production webpack -p",
+    "dev": "NODE_ENV=development webpack-dev-server -d",
+    "start": "NODE_ENV=production node ./server/index.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Tommaso Bertagnin",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

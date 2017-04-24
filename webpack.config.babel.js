@@ -18,7 +18,6 @@ const pathResolve = (loc) => path.resolve(__dirname, loc)
  * PLUGINS
  */
 const htmlPlugin = new HtmlWebpackPlugin({
-  title: 'UI Kit', // change this to modify the page title
   template: 'src/index.ejs',
 })
 
@@ -36,6 +35,7 @@ const webpackConfig = {
   output: {
     path: pathResolve('dist'),
     filename: 'app.bundle.[hash].js',
+    publicPath: '/'
   },
   module: {
     rules: [
