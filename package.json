@@ -8,10 +8,11 @@
     "url": "https://github.com/tommasobertagnin/frontend-kit"
   },
   "scripts": {
-    "build": "jest && rm -rf ./dist/* && NODE_ENV=production webpack -p",
+    "build": "npm test && rm -rf ./dist/* && NODE_ENV=production webpack -p",
     "dev": "NODE_ENV=development webpack-dev-server -d",
     "start": "NODE_ENV=production node ./server/index.js",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "keywords": [],
   "author": "Tommaso Bertagnin",
